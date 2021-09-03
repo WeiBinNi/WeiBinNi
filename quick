@@ -1,3 +1,4 @@
+```
 import torch
 from torch import nn
 from torch.utils.data import DataLoader
@@ -133,4 +134,4 @@ with torch.no_grad():
     print(f'Predicted: "{predicted}", Actual: "{actual}"')
     print(pred[0])
     print(pred.shape)'''
-
+```
