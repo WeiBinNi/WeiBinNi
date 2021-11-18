@@ -1,0 +1,34 @@
+from skimage import io,data
+# from scipy import fft,ifft
+import matplotlib.pyplot as plt
+import numpy as np
+
+img = data.camera()
+io.imshow(img)
+io.show()
+print(img.shape)
+
+# 生成距离矩阵
+x = np.arange(512) - 256
+y = np.arange(512) - 256
+[u,v] = np.meshgrid(x,y)
+
+z = (u**2 + v**2)**0.5
+d0 = 200
+
+
+img = np.fft.fft2(img)
+img = np.fft.fftshift(img)
+
+# img[np.where(z>d0)] = 0
+# img = img*np.exp(-z**2/2/d0)
+n = 2
+img = img*(1 - 1/(1+(z/d0)**2*n))
+
+img = np.fft.ifft2(img)
+img = np.abs(img)
+plt.figure(figsize=(10,6))
+plt.imshow(img,cmap='gray')
+plt.show()
+
+print('fine')
