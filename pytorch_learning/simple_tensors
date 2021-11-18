@@ -1,0 +1,20 @@
+import torch as tf
+a = np.array([1, 2, 3])
+# t1数据类型为全局变量类型，可由torch.get_default_dtype()获得，其余均继承a的数据类型
+# 此处为 int32
+t1 = tf.Tensor(a)
+t2 = tf.tensor(a)
+
+# 以下两个与ndarray共享内存，会随a的改变而改变
+t3 = tf.as_tensor(a)
+t4 = tf.from_numpy(a)
+print(t1)
+print(t2)
+print(t3)
+print(t4)
+a[[0,1,2]] = 0
+print("look at the difference")
+print(t1)
+print(t2)
+print(t3)
+print(t4)
