@@ -1,0 +1,43 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.style as mplstyle
+
+# input data
+modified = np.arange(10) + 1
+standard = np.array([1.005,2.047,3.056,4.026,5.081,6.096,7.112,8.072,9.103,10.077])
+x = modified
+y = standard - modified
+
+# import styles and 
+#plt.style.use('seaborn-whitegrid')
+mplstyle.use(['dark_background', 'ggplot', 'fast'])
+# enables u to input Chinese
+plt.rcParams['font.sans-serif'] = ['SimHei']
+plt.rcParams['axes.unicode_minus'] = False
+
+# plot figures
+fig = plt.figure(figsize=(8,6))
+ax = fig.add_subplot(111)
+ax.scatter(x,y)# marker='.')#maker 控制样式
+ax.plot(x,y)
+
+#Adjust_axis:
+ax.spines['left'].set_position('zero')
+ax.spines['right'].set_color('none')
+ax.spines['top'].set_color('none')
+ax.spines['bottom'].set_position('zero')
+
+#Set x-axis and y-axis limit:
+ax.set_xlim([0,12])
+ax.set_ylim([0,0.12])
+
+plt.xticks(np.arange(0,12,1))
+plt.yticks(np.arange(0,0.12,0.02))
+ax.tick_params(axis='both',which='major',labelsize=13)
+
+# ax.legend(['0.51k','1k','5.1k','10k'])
+ax.text(8.1,0.11,(7,0.112),color='gray',ha='center', va='bottom', fontsize=15)
+plt.xlabel('',fontsize=13)
+plt.ylabel('',fontsize=13)
+plt.tight_layout()
+plt.show()
